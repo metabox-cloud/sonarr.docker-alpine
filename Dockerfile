@@ -26,8 +26,11 @@ RUN \
   mkdir -p /opt/NzbDrone && \
   cd /opt && \ 
   wget "https://services.sonarr.tv/v1/download/$VERSION/latest?version=3&os=linux" -O NzbDrone.tgz && \
-  tar xzvf NzbDrone.tgz && \
-  rm NzbDrone.tgz && \
+tar xf \
+        /tmp/NzbDrone.tgz -C \
+        /opt/NzbDrone --strip-components=1 && \
+ echo "UpdateMethod=docker\nBranch=${SONARR_BRANCH}\nPackageVersion=${VERSION}\nPackageAuthor=metaBox.cloud" > /opt/NzbDrone/package_info && \
+ rm -rf /opt/NzbDrone/Sonarr.Update && \
    echo "**** cleanup ****" && \
  rm -rf \
         /tmp/* \
