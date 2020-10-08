@@ -24,9 +24,10 @@ RUN echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositorie
 
 RUN \
   mkdir -p /opt/NzbDrone && \
+  cd /opt && \
   wget http://download.sonarr.tv/v2/$VERSION/mono/NzbDrone.$VERSION.tar.gz -O NzbDrone.tgz && \
   tar xzvf NzbDrone.tgz && \
-  rm NzbDrone.tgz \
+  rm NzbDrone.tgz && \
    echo "**** cleanup ****" && \
  rm -rf \
         /tmp/* \
